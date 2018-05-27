@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: zuul-api-gateway
+    
+server:
+  port: 8093
+  
+zuul:
+  routes:
+    policyMgmtUI: 
+      path: /policyMgmt/**
+      url: http://localhost:9090/
+    UserManagement:
+     path: /userMgmt/**
+     service-id: UserManagement
+    userPolicy:
+     path: /userPolicyMgmt/**
+     service-id: userPolicy
+    policyDetails:
+     path: /allpolicies/**
+     #service-id: policyDetails
+     url: http://localhost:9093/
+    PaymentService:
+     path: /payment/**
+     url: http://localhost:9098/
+      
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:    
+    fetch-registry: true
+    register-with-eureka: true    
+    serviceUrl:
+        defaultZone: http://localhost:9190/eureka 
+ 
+  
+ribbon:
+  ReadTimeout: 100000000
+  ConnectTimeout: 10000000
+  eureka:
+    enabled: true

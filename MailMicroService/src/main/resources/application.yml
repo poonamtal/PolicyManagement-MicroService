@@ -1,0 +1,43 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:17991
+    #bootstrap-servers: localhost:17991
+    #topic:
+     # userRegistered: USER_REGISTERED_TOPIC2
+    consumer:
+      group-id: mail_consumer1
+    template:
+      default-topic: USER_REGISTERED_TOPIC2
+      
+    
+  application:
+    name: MicroMailService
+ # cloud:
+  # config: 
+   #  uri: http://localhost:9880
+  mail:
+    host: internal-mail-router.oracle.com
+    #spring.data.mongodb.host=localhost
+    #spring.data.mongodb.port=27017
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+     # database: mailinfo 
+     # username: dbuser
+     # password: dbpass
+      repositories:
+        enabled: true
+    jpa:
+      repositories:
+        enabled: false
+      
+server:
+  port: 8888
+  
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+       defaultZone: http://localhost:9190/eureka
+    register-with-eureka: true     
